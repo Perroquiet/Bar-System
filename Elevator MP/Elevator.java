@@ -28,10 +28,11 @@ public class Elevator extends java.lang.Object
 		return this.identifier;
 	}
 	
-	// public void tick()
-	// {
-	
-	// }
+	public void tick()
+	{
+		String tick = "tick";
+		
+	}
 	
 	// public byte getPassengerCount()
 	// {
