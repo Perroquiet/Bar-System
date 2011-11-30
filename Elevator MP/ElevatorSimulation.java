@@ -5,11 +5,6 @@ public class ElevatorSimulation
 {
 	private static final String FILE = "run1.dat";
 	
-	//Samtang wala pa ang passenger class magbuhat sa tag attributes kunuhay
-		private String passengerName;
-		private byte floorName;
-		
-	
 	public static void main(java.lang.String[] args)
 	{
 		try
@@ -23,23 +18,30 @@ public class ElevatorSimulation
 		DataInputStream in = new DataInputStream(fstream);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 		
-		System.out.println("Simulation begins ...\n");
+		System.out.println("\nSimulation begins ...\n");
 			
 		while ((strLine = br.readLine()) != null)
 		{
 			//System.out.println (strLine);
 			if (strLine.equals(tick))
 			{
-				System.out.println("Tick.");
+				//System.out.println("Tick.");
+				Elevator.tick();
 			}
 			else
 			{
 				temp = strLine.split(delimiter);
-			
+				Elevator ibilator = new Elevator(Byte.valueOf(temp[2]));
+				//ibilator.tick();
 				// for (int i=0; i<temp.length; i++)
 				// {
-					System.out.println("Passenger " + temp[1] + " arrives on floor " + temp[2]);
+				//		System.out.println("Passenger " + temp[1] + " arrives on floor " + temp[2]);
 				// }
+				Passenger pasahero = new Passenger(temp[1], Byte.valueOf(temp[2]));
+				
+				//ibilator.addPassenger(temp[1]);
+				//System.out.println(pasahero.getName());
+				
 			}
 			
 			
