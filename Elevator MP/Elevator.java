@@ -1,10 +1,10 @@
 public class Elevator extends java.lang.Object
 
 {
-	private static final int FIRST_FLOOR = 1;
-	private static final int SECOND_FLOOR = 2;
-	private static final int MAX_PASSENGERS = 8;
-	private static final int MAX_DELAY = 10;
+	private final int FIRST_FLOOR = 1;
+	private final int SECOND_FLOOR = 2;
+	private final int MAX_PASSENGERS = 10;
+	private final int MAX_DELAY = 10;
 	
 	private byte identifier;
 	private byte passengerCount = 0;
@@ -15,28 +15,41 @@ public class Elevator extends java.lang.Object
 	public Elevator(byte elevatorNumber)
 	{
 		this.identifier = elevatorNumber;
-		if (this.currentFloor == FIRST_FLOOR)
-		{
-			this.currentFloor = elevatorNumber;
-		}
-		if (this.passengerCount < MAX_PASSENGERS)
-		{
-			this.addPassenger("New Pasahero");
-		}
+		// if (this.currentFloor == FIRST_FLOOR)
+		// {
+		this.currentFloor = FIRST_FLOOR;
+		// }
+		// if (this.passengerCount < MAX_PASSENGERS)
+		// {
+			// this.addPassenger("New Pasahero");
+		// }
+		
 		this.print();
 	}
 	
 	public void print()
 	{
-		if(this.isElevatorHere(this.currentFloor) || this.passengerCount == MAX_PASSENGERS || this.timeLeftToDeparture == MAX_DELAY)
+		if(this.isElevatorHere(this.currentFloor) && this.passengerCount < MAX_PASSENGERS)
 		{
+			//System.out.println(" Loaded into elevator: " + this.currentFloor);
+		}
+		
+		else if(!this.isElevatorHere(this.currentFloor))
+		{
+			System.out.println(" Takes the stairs.");
+		}
+		
+		if(this.isElevatorHere(this.currentFloor) && (this.passengerCount == MAX_PASSENGERS || this.timeLeftToDeparture == MAX_DELAY))
+		{
+			System.out.println(" Loaded into elevator: " + this.currentFloor + "\nElvator departing from floor " + this.currentFloor + " with " + this.passengerCount + " passengers.\n");
 			if (this.currentFloor == FIRST_FLOOR)
 			{
 				this.currentFloor = SECOND_FLOOR;
 			} else {
 				this.currentFloor = FIRST_FLOOR;
 			}
-			System.out.println("larga!");
+			this.passengerCount = 0;
+			this.timeLeftToDeparture = 0;
 		}
 	}
 	
@@ -45,14 +58,14 @@ public class Elevator extends java.lang.Object
 		return this.identifier;
 	}
 	
-	public static void tick()
+	public void tick()
 	{
 		//String tick = "tick";
-		if (this.timeLeftToDeparture < MAX_DELAY)
+		if (timeLeftToDeparture < MAX_DELAY)
 		{
-			this.timeLeftToDeparture++;
+			timeLeftToDeparture++;
 		}
-		System.out.println("Tick.");
+		//System.out.println("Tick.");
 	}
 	
 	public byte getPassengerCount()
@@ -68,14 +81,24 @@ public class Elevator extends java.lang.Object
 			return false;
 	}
 	
-	public static boolean addPassenger(String newPass)
+	public boolean addPassenger(String newPass)
 	{
-		this.passengerCount++;
+		passengerCount++;
 		return true;
 	}
 	
 	public void reportPassengerCount()
 	{
 		System.out.println("Total passengers: " + this.totalPassengerCount);
+	}
+	
+	public void printTicks()
+	{
+		System.out.println("Ticks: " + this.timeLeftToDeparture);
+	}
+	
+	public void elevatorCurrentFloor()
+	{
+		System.out.println("Elevator is on: " + this.currentFloor);
 	}
 }

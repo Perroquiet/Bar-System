@@ -1,0 +1,23 @@
+tick
+tick
+passenger Google 1
+tick
+passenger Palautot 1
+passenger Palaigit 1
+tick
+tick
+passenger Bulingit 1
+tick
+tick
+passenger Mark 1
+passenger Python 1
+tick
+tick
+tick
+tick
+passenger Scheme 1
+passenger Haskell 1
+tick
+passenger PHP 1
+tick
+passenger Ruby 1

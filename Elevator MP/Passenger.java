@@ -14,7 +14,7 @@ public class Passenger extends java.lang.Object
 	public void print()
 	{
 		System.out.print("Passenger Name: " + this.getName());
-		System.out.println(" arrives on floor " + this.getFloor());
+		System.out.println(" arrives on floor " + this.getFloor() + ".");
 	}
 
 	public java.lang.String getName()

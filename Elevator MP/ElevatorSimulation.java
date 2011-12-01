@@ -5,6 +5,9 @@ public class ElevatorSimulation
 {
 	private static final String FILE = "run1.dat";
 	
+	static Elevator elevator1 = new Elevator((byte)1);
+	static Elevator elevator2 = new Elevator((byte)2);
+	
 	public static void main(java.lang.String[] args)
 	{
 		try
@@ -26,28 +29,29 @@ public class ElevatorSimulation
 			if (strLine.equals(tick))
 			{
 				//System.out.println("Tick.");
-				Elevator.tick();
+				elevator1.tick();
+				elevator2.tick();
+				System.out.println("Tick.");
+				//elevator1.printTicks();
+				//elevator2.printTicks();
 			}
 			else
 			{
 				temp = strLine.split(delimiter);
-				Elevator ibilator = new Elevator(Byte.valueOf(temp[2]));
+				Passenger pasahero = new Passenger(temp[1], Byte.valueOf(temp[2]));
+				
+				//Elevator ibilator = new Elevator(Byte.valueOf(temp[2]));
 				//ibilator.tick();
 				// for (int i=0; i<temp.length; i++)
 				// {
 				//		System.out.println("Passenger " + temp[1] + " arrives on floor " + temp[2]);
 				// }
-				Passenger pasahero = new Passenger(temp[1], Byte.valueOf(temp[2]));
+			
 				
 				//ibilator.addPassenger(temp[1]);
 				//System.out.println(pasahero.getName());
-				
 			}
-			
-			
-		
 		}
-		
 		in.close();
 		}
 		
@@ -58,7 +62,7 @@ public class ElevatorSimulation
 		}
 		
 		
-		Elevator elevator = new Elevator((byte) 1);
+		//Elevator elevator = new Elevator((byte) 1);
 		//System.out.println("Elevator Number is: " + elevator.getIdentifier());
 		System.out.println("\nSimulation complete.");
 	}
