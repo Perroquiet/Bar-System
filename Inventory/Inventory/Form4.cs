@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
         private void Form4_Load(object sender, EventArgs e)
         {
             con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=E:\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
             con.Open();
         }
 
@@ -94,27 +94,16 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("One or more required fields are missing", "STOP RIGHT THERE CRIMINAL SCUM!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE itemtable SET Item_Name = @itemname, Item_Description = @itemdesc, Item_Price = @itemprice, Item_Quantity = @itemquant where Item_ID = @itemid";
-            cmd.Connection = con;           
-
-            cmd.Parameters.AddWithValue("@itemname", textBox5.Text);
-            cmd.Parameters.AddWithValue("@itemdesc", textBox2.Text);
-            cmd.Parameters.AddWithValue("@itemprice", textBox3.Text);
-            cmd.Parameters.AddWithValue("@itemquant", textBox4.Text);
-            cmd.Parameters.AddWithValue("@itemid", dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString());
-
             if (MessageBox.Show("Are you sure you want to update this item's information?", "Confirm Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
                 this.DialogResult = DialogResult.OK;               
             }
 
             else return;
-            
-            cmd.ExecuteNonQuery();
+
+            Inventory inventory = new Inventory(con);
+
+            inventory.updateItem(textBox5.Text, textBox2.Text, textBox3.Text, textBox4.Text, dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString());
         }
 
       

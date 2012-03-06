@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Inventory.exe" size="63488">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Inventory.exe" size="66048">
       <assemblyIdentity name="Inventory" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>MLh4hRJutiYVH6BL0iUU573OQfo=</dsig:DigestValue>
+        <dsig:DigestValue>yFHHPOHayzGVP4GSZ5ym8CKuXtU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Inventory.exe.config" size="515">
+  <file name="Inventory.exe.config" size="488">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>IXXcu1pHcQ8vTRr4lzOsbMWeEgU=</dsig:DigestValue>
+      <dsig:DigestValue>+Seqb1dgfmbOePJLkURaeEkqiFQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
