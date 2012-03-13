@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=E:\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
 
             con.Open();
             MessageBox.Show("Welcome Shadowstrider!\n\nFUS RO DAH!","Log In Successful!",MessageBoxButtons.OK,MessageBoxIcon.Information);

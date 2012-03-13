@@ -35,7 +35,42 @@ namespace WindowsFormsApplication1
             cmd.Connection = connection;
 
             cmd.ExecuteNonQuery();
+
+                   
         }
+
+        public void addItemDate(object selectedIndex)
+        {
+            DataRow[] dRow;            
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+
+            System.Data.SqlClient.SqlDataAdapter da;
+            string sql = string.Format("SELECT * FROM itemtable");
+
+            DataSet ds = new DataSet();
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+            da.Fill(ds, "items");
+
+            dRow = new DataRow[ds.Tables["items"].Rows.Count];
+
+            for (int i = 0; i < ds.Tables["items"].Rows.Count; i++)
+            {
+                dRow[i] = ds.Tables["items"].Rows[i];
+            }
+            
+            cmd.Parameters.AddWithValue("@itemid", dRow[dRow.Length - 1].ItemArray.GetValue(0).ToString());
+            cmd.Parameters.AddWithValue("@supplierid", selectedIndex);
+            cmd.Parameters.AddWithValue("@dateadded", DateTime.Now);
+            cmd.Parameters.AddWithValue("@lastupdated", DateTime.Now);
+
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "INSERT INTO itemtimetable VALUES(@itemid,@supplierid,@dateadded,@lastupdated)";
+            cmd.Connection = connection;
+
+            cmd.ExecuteNonQuery();
+            
+        }
+
 
         public void removeItem(object itemId)
         {
