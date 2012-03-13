@@ -11,9 +11,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Form2 : Form
     {
-        System.Data.SqlClient.SqlConnection con;
         DataRow[] dRow;
-        //Database con;
+        Database db = new Database();
 
         public Form2()
         {
@@ -22,26 +21,27 @@ namespace WindowsFormsApplication1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //con = Database.connect();
-            con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-
-            con.Open();
-
+            db.connect();
+            DataSet ds = new DataSet();
+            
             System.Data.SqlClient.SqlDataAdapter da;
             string sql = string.Format("SELECT * FROM suppliertable");
-
-            DataSet ds = new DataSet();
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            
+            
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(ds, "suppliers");
-
+            
+           
+            
+            //db.dataSet(ds, "suppliertable");
+            
             dRow = new DataRow[ds.Tables["suppliers"].Rows.Count];
 
             for (int i = 0; i < ds.Tables["suppliers"].Rows.Count; i++)
             {
                 dRow[i] = ds.Tables["suppliers"].Rows[i];
             }
-
+            
             System.Object[] SupplierObject = new System.Object[dRow.Length];
 
             for (int i = 0; i < dRow.Length; i++)
@@ -67,11 +67,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("One or more required fields are missing", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            Inventory inventory = new Inventory(con);
+            Inventory inventory = new Inventory();
 
-            inventory.addItem(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+            inventory.addItem(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, db.con);
 
-            inventory.addItemDate(dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString());
+            inventory.addItemDate(dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString(), db.con);
 
             this.DialogResult = DialogResult.OK;
             this.Close();

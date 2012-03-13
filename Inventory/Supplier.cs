@@ -11,13 +11,6 @@ namespace WindowsFormsApplication1
         string supplierName;
         string supplierContact;
 
-        System.Data.SqlClient.SqlConnection connection;
-
-        public Supplier(System.Data.SqlClient.SqlConnection connection)
-        {
-            this.connection = connection;
-        }
-
         public int getSupplierId()
         { 
             return supplierId;
@@ -33,33 +26,18 @@ namespace WindowsFormsApplication1
             return supplierContact;
         }
 
-        public void addSupplier(object textBox1, object textBox2, object textBox3, object textBox4)
+        public void addSupplier(object textBox1, object textBox2, object textBox3, object textBox4, System.Data.SqlClient.SqlConnection connection)
         {
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-
-            cmd.Parameters.AddWithValue("@suppName", textBox1);
-            cmd.Parameters.AddWithValue("@suppAdd", textBox2);
-            cmd.Parameters.AddWithValue("@suppCN", textBox3);
-            cmd.Parameters.AddWithValue("@suppEmail", textBox4);
-
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "INSERT INTO suppliertable VALUES(@suppName,@suppAdd,@suppCN,@suppEmail)";
-            cmd.Connection = connection;
-
-            cmd.ExecuteNonQuery();
+            Database db = new Database();
+            
+            db.insertSupplier(textBox1, textBox2, textBox3, textBox4, connection);
         }
 
-        public void removeSupplier(object id)
+        public void removeSupplier(object id, System.Data.SqlClient.SqlConnection connection)
         {
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-
-            cmd.Parameters.AddWithValue("@suppId", id);
-
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE FROM suppliertable WHERE Supplier_ID=@suppId";
-            cmd.Connection = connection;
-
-            cmd.ExecuteNonQuery();
+            Database db = new Database();
+            
+            db.deleteSupplier(id, connection);
         }
     }
 }

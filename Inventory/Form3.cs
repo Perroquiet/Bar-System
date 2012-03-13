@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form3 : Form
     {
-        System.Data.SqlClient.SqlConnection con;
+        Database db = new Database();
 
         public Form3()
         {
@@ -25,9 +25,9 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("One or more required fields are missing", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }  
-            Supplier supplier = new Supplier(con);
+            Supplier supplier = new Supplier();
 
-            supplier.addSupplier(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+            supplier.addSupplier(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, db.con);
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -40,10 +40,7 @@ namespace WindowsFormsApplication1
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-
-            con.Open();
+            db.connect();
         }
     }
 }

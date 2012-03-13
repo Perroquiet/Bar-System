@@ -13,6 +13,7 @@ namespace WindowsFormsApplication1
     {
         System.Data.SqlClient.SqlConnection con;        
         DataRow[] dRow;
+        Database db = new Database();
 
         public Form4()
         {
@@ -21,9 +22,7 @@ namespace WindowsFormsApplication1
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-            con.Open();
+            db.connect();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -101,9 +100,9 @@ namespace WindowsFormsApplication1
 
             else return;
 
-            Inventory inventory = new Inventory(con);
+            Inventory inventory = new Inventory();
 
-            inventory.updateItem(textBox5.Text, textBox2.Text, textBox3.Text, textBox4.Text, dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString());
+            inventory.updateItem(textBox5.Text, textBox2.Text, textBox3.Text, textBox4.Text, dRow[comboBox1.SelectedIndex].ItemArray.GetValue(0).ToString(), db.con);
         }
 
       

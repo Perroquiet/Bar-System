@@ -11,8 +11,10 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        System.Data.SqlClient.SqlConnection con;
-    
+        //System.Data.SqlClient.SqlConnection con;
+
+        Database db = new Database();
+
         public Form1()
         {
             InitializeComponent();
@@ -20,10 +22,14 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            /*
             con = new System.Data.SqlClient.SqlConnection();
             con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+            */
 
-            con.Open();
+            //con.Open();
+            db.connect();
+
             MessageBox.Show("Welcome Shadowstrider!\n\nFUS RO DAH!","Log In Successful!",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
@@ -58,22 +64,30 @@ namespace WindowsFormsApplication1
         private void itemsToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+
+            /* wala nani xa.
             System.Data.SqlClient.SqlDataAdapter da;
 
             string sql = "SELECT * FROM itemtable";
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(dt);
+             */
+            db.dataGrid(dt, "itemtable");
             dataGridView1.DataSource = dt;
         }
 
         private void suppliersToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+            /* wala nani xa.
             System.Data.SqlClient.SqlDataAdapter da;
 
             string sql = "SELECT * FROM suppliertable";
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(dt);
+             */
+            
+            db.dataGrid(dt, "suppliertable");
             dataGridView1.DataSource = dt;
         }
 
@@ -89,11 +103,14 @@ namespace WindowsFormsApplication1
         private void generateitemlist()
         {
             DataTable dt = new DataTable();
+            /* wala nani xa.
             System.Data.SqlClient.SqlDataAdapter da;
 
             string sql = "SELECT * FROM itemtable";
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(dt);
+             */
+            db.dataGrid(dt, "itemtable");
             dataGridView1.DataSource = dt;
             int rowCount = ((DataTable)this.dataGridView1.DataSource).Rows.Count;
             dataGridView1.Rows[rowCount - 1].Selected = true;
@@ -104,11 +121,15 @@ namespace WindowsFormsApplication1
         private void generatesupplierlist()
         {
             DataTable dt = new DataTable();
-            System.Data.SqlClient.SqlDataAdapter da;
 
+            /* wala nani xa.
+            System.Data.SqlClient.SqlDataAdapter da;
             string sql = "SELECT * FROM suppliertable";
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(dt);
+             */
+
+            db.dataGrid(dt, "suppliertable");
             dataGridView1.DataSource = dt;
             int rowCount = ((DataTable)this.dataGridView1.DataSource).Rows.Count;
             dataGridView1.Rows[rowCount - 1].Selected = true;
@@ -142,11 +163,14 @@ namespace WindowsFormsApplication1
             }
 
             DataTable dt = new DataTable();
+            /* wala nani xa.
             System.Data.SqlClient.SqlDataAdapter da;
 
             string sql = string.Format("SELECT * FROM itemtable where Item_Name LIKE '%{0}%'", textBox1.Text);
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(dt);
+            */
+            db.dataGrid2(dt, textBox1.Text);
             dataGridView1.DataSource = dt;
             int rowCount = ((DataTable)this.dataGridView1.DataSource).Rows.Count;
             if (rowCount > 0)
