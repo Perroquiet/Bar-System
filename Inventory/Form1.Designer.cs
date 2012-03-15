@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,33 +73,33 @@
             this.toolStripSeparator3,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // addItemToolStripMenuItem
             // 
             this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.addItemToolStripMenuItem.Text = "Add Item";
             this.addItemToolStripMenuItem.Click += new System.EventHandler(this.addItemToolStripMenuItem_Click);
             // 
             // addSupplierToolStripMenuItem
             // 
             this.addSupplierToolStripMenuItem.Name = "addSupplierToolStripMenuItem";
-            this.addSupplierToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.addSupplierToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.addSupplierToolStripMenuItem.Text = "Add Supplier";
             this.addSupplierToolStripMenuItem.Click += new System.EventHandler(this.addSupplierToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -108,7 +108,7 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.upToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // upToolStripMenuItem
@@ -117,21 +117,21 @@
             this.itemsToolStripMenuItem1,
             this.suppliersToolStripMenuItem1});
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.upToolStripMenuItem.Text = "Update Inventory";
             this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
             // 
             // itemsToolStripMenuItem1
             // 
             this.itemsToolStripMenuItem1.Name = "itemsToolStripMenuItem1";
-            this.itemsToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
+            this.itemsToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.itemsToolStripMenuItem1.Text = "Item Information";
             this.itemsToolStripMenuItem1.Click += new System.EventHandler(this.itemsToolStripMenuItem1_Click);
             // 
             // suppliersToolStripMenuItem1
             // 
             this.suppliersToolStripMenuItem1.Name = "suppliersToolStripMenuItem1";
-            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
+            this.suppliersToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.suppliersToolStripMenuItem1.Text = "Supplier Information";
             this.suppliersToolStripMenuItem1.Click += new System.EventHandler(this.suppliersToolStripMenuItem1_Click);
             // 
@@ -140,8 +140,9 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generateInventoryListToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
             // generateInventoryListToolStripMenuItem
             // 
@@ -149,20 +150,21 @@
             this.itemsToolStripMenuItem2,
             this.suppliersToolStripMenuItem2});
             this.generateInventoryListToolStripMenuItem.Name = "generateInventoryListToolStripMenuItem";
-            this.generateInventoryListToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.generateInventoryListToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.generateInventoryListToolStripMenuItem.Text = "Generate Inventory List";
+            this.generateInventoryListToolStripMenuItem.Click += new System.EventHandler(this.generateInventoryListToolStripMenuItem_Click);
             // 
             // itemsToolStripMenuItem2
             // 
             this.itemsToolStripMenuItem2.Name = "itemsToolStripMenuItem2";
-            this.itemsToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.itemsToolStripMenuItem2.Size = new System.Drawing.Size(128, 22);
             this.itemsToolStripMenuItem2.Text = "Items";
             this.itemsToolStripMenuItem2.Click += new System.EventHandler(this.itemsToolStripMenuItem2_Click);
             // 
             // suppliersToolStripMenuItem2
             // 
             this.suppliersToolStripMenuItem2.Name = "suppliersToolStripMenuItem2";
-            this.suppliersToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.suppliersToolStripMenuItem2.Size = new System.Drawing.Size(128, 22);
             this.suppliersToolStripMenuItem2.Text = "Suppliers";
             this.suppliersToolStripMenuItem2.Click += new System.EventHandler(this.suppliersToolStripMenuItem2_Click);
             // 
@@ -171,21 +173,21 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutTheBarInventorySystemToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutTheBarInventorySystemToolStripMenuItem
             // 
             this.aboutTheBarInventorySystemToolStripMenuItem.Name = "aboutTheBarInventorySystemToolStripMenuItem";
-            this.aboutTheBarInventorySystemToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.aboutTheBarInventorySystemToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.aboutTheBarInventorySystemToolStripMenuItem.Text = "About The Bar Inventory System";
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.InactiveBorder;

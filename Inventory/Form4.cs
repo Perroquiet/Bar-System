@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
             string sql = string.Format("SELECT * FROM itemtable where Item_Name LIKE '%{0}%'", textBox1.Text);
 
             DataSet ds = new DataSet();
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(ds,"items");
 
             dRow = new DataRow[ds.Tables["items"].Rows.Count];

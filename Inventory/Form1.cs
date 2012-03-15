@@ -181,6 +181,16 @@ namespace WindowsFormsApplication1
             else return;
         }
 
+        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void generateInventoryListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

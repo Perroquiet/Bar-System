@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
             string sql = string.Format("SELECT * FROM suppliertable where Supplier_Name LIKE '%{0}%'", textBox1.Text);
 
             DataSet ds = new DataSet();
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(ds, "suppliers");
 
             dRow = new DataRow[ds.Tables["suppliers"].Rows.Count];
