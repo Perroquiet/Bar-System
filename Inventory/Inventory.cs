@@ -9,24 +9,40 @@ namespace WindowsFormsApplication1
 {
     class Inventory
     {
-        bool itemExists = false;
-        int itemNumber;
-        int itemQuantity;
-        string itemDescription;
+        System.Data.SqlClient.SqlConnection connection;
+        
+        string itemName;
+        int itemQty;
+        string itemDesc;
+        float itemPrice;
 
-        public void addItem(object textBox1, object textBox2, object textBox3, object textBox4, System.Data.SqlClient.SqlConnection connection)
+        public Inventory()
+        { 
+        }
+        //Add Item
+        public Inventory(string itemName, string itemDesc, float itemPrice, int itemQty, System.Data.SqlClient.SqlConnection connection)
+        {
+            this.itemName = itemName;
+            this.itemQty = itemQty;
+            this.itemDesc = itemDesc;
+            this.itemPrice = itemPrice;
+
+            this.connection = connection;
+        }
+
+        public void addItem()
         {
             Database db = new Database();
 
-            db.insertItem(textBox1, textBox2, textBox3, textBox4, connection);
+            db.insertItem(this.itemName, this.itemDesc, this.itemPrice, this.itemQty, this.connection);
                   
         }
 
-        public void addItemDate(object selectedIndex, System.Data.SqlClient.SqlConnection connection)
+        public void addItemDate(object selectedIndex, object supplier, System.Data.SqlClient.SqlConnection connection)
         {
             Database db = new Database();
 
-            db.insertItemDate(selectedIndex, connection);
+            db.insertItemDate(selectedIndex, supplier, connection);
             
         }
 
@@ -47,11 +63,11 @@ namespace WindowsFormsApplication1
 
 
         
-        public void decQuantityOfItem(object itemId, System.Data.SqlClient.SqlConnection connection)
+        public void decQuantityOfItem(object itemId, object quantity, System.Data.SqlClient.SqlConnection connection)
         {
             Database db = new Database();
 
-            db.decQuantityOfItem(itemId, connection);
+            db.decQuantityOfItem(itemId, quantity, connection);
         }
 
         public void incQuantityOfItem(object itemId, System.Data.SqlClient.SqlConnection connection)
@@ -66,6 +82,12 @@ namespace WindowsFormsApplication1
             Database db = new Database();
 
             db.checkItemIfExists(itemName, connection);
+        }
+
+        public void addsale(object itemid, object itemname, object itemdesc, object itemprice, object itemquant, object totalprice,object employee, object date, System.Data.SqlClient.SqlConnection connection)
+        {
+            Database db = new Database();
+            db.addsale(itemid, itemname, itemdesc, itemprice, itemquant, totalprice, employee, date, connection);
         }
         
     }

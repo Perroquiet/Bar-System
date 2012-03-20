@@ -7,13 +7,17 @@ namespace WindowsFormsApplication1
 {
     class Supplier
     {
-        int supplierId;
         string supplierName;
+        string supplierAddress;
         string supplierContact;
+        string supplierEmail;
 
-        public int getSupplierId()
-        { 
-            return supplierId;
+        public Supplier(string suppName, string suppAddress, string suppContact, string suppEmail) {
+            
+            supplierName = suppName;
+            supplierAddress = suppAddress;
+            supplierContact = suppContact;
+            supplierEmail = suppEmail;
         }
 
         public string getSupplierName()

@@ -24,11 +24,13 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("One or more required fields are missing", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-            }  
-            Supplier supplier = new Supplier();
+            }
+
+            Supplier supplier = new Supplier(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+
 
             supplier.addSupplier(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, db.con);
-
+            this.Refresh();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

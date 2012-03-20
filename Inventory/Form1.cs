@@ -14,23 +14,42 @@ namespace WindowsFormsApplication1
         //System.Data.SqlClient.SqlConnection con;
 
         Database db = new Database();
+        string user;
 
         public Form1()
-        {
-            InitializeComponent();
+        {        
+            InitializeComponent();                        
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*
-            con = new System.Data.SqlClient.SqlConnection();
-            con.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\USER\\Documents\\C# DB\\inventorydb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-            */
+         
+            Form7 loginform = new Form7();            
 
-            //con.Open();
-            db.connect();
-
-            MessageBox.Show("Welcome Shadowstrider!\n\nFUS RO DAH!","Log In Successful!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            if (loginform.ShowDialog() != DialogResult.OK)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                if(loginform.employeeposition == "attendant")
+                 {
+                     addItemToolStripMenuItem.Enabled = false;
+                     addSupplierToolStripMenuItem.Enabled = false;
+                     upToolStripMenuItem.Enabled = false;
+                     salesToolStripMenuItem.Enabled = false;
+                     addCashierSaleToolStripMenuItem.Enabled = false;
+                 }
+                if (loginform.employeeposition == "cashier")
+                {
+                    addItemToolStripMenuItem.Enabled = false;
+                    addSupplierToolStripMenuItem.Enabled = false;
+                    upToolStripMenuItem.Enabled = false;
+                }
+                this.user = loginform.user;
+                db.connect();
+            }
+         
         }
 
         private void generateListToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,16 +200,46 @@ namespace WindowsFormsApplication1
             else return;
         }
 
-        private void viewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addCashierSaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            Form8 saleform = new Form8();
+            saleform.employee = this.user;
+            if (saleform.ShowDialog() == DialogResult.OK)
+            {                
+                db.dataGrid(dt, "sales");
+                dataGridView1.DataSource = dt;
+                int rowCount = ((DataTable)this.dataGridView1.DataSource).Rows.Count;
+                dataGridView1.Rows[rowCount - 1].Selected = true;
+                dataGridView1.FirstDisplayedScrollingRowIndex = rowCount - 1;
+            }
+            
+        }
+
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();          
+            db.dataGrid(dt, "sales");
+            dataGridView1.DataSource = dt;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void generateInventoryListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
-
+        /*
+        private void itemHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            db.dataGrid(dt, "itemtimetable");
+            dataGridView1.DataSource = dt;
+        }
+        */
        
     }
 }

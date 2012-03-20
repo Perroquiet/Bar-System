@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form4 : Form
     {
-        System.Data.SqlClient.SqlConnection con;        
+           
         DataRow[] dRow;
         Database db = new Database();
 
@@ -27,6 +27,8 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+
             comboBox1.DataSource = null;
             comboBox1.Items.Clear();
             if (string.IsNullOrEmpty(textBox1.Text))
@@ -34,16 +36,10 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Eneter a search keyword", "Enter Search Keyword", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            
-            
-            System.Data.SqlClient.SqlDataAdapter da;
-
-            string sql = string.Format("SELECT * FROM itemtable where Item_Name LIKE '%{0}%'", textBox1.Text);
-
             DataSet ds = new DataSet();
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
-            da.Fill(ds,"items");
-
+            
+            db.selectItemUpdateForm(ds, textBox1.Text, db.con);
+            
             dRow = new DataRow[ds.Tables["items"].Rows.Count];
 
             for (int i = 0; i < ds.Tables["items"].Rows.Count; i++)

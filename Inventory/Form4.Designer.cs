@@ -152,10 +152,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Starcraft", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(70, 51);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(285, 14);
+            this.label5.Size = new System.Drawing.Size(183, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "Update Item Information";
             // 
@@ -199,6 +199,8 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update Item Information";

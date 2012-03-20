@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form5 : Form
     {
-        System.Data.SqlClient.SqlConnection con;
+        
         DataRow[] dRow;
         Database db = new Database();
 
@@ -35,15 +35,18 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            DataSet ds = new DataSet();
 
+            /*
             System.Data.SqlClient.SqlDataAdapter da;
 
             string sql = string.Format("SELECT * FROM suppliertable where Supplier_Name LIKE '%{0}%'", textBox1.Text);
-
-            DataSet ds = new DataSet();
+                       
             da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
             da.Fill(ds, "suppliers");
+            */
 
+            db.selectSupplierUpdateForm(ds, textBox1.Text, db.con);
             dRow = new DataRow[ds.Tables["suppliers"].Rows.Count];
 
             for (int i = 0; i < ds.Tables["suppliers"].Rows.Count; i++)
@@ -87,7 +90,7 @@ namespace WindowsFormsApplication1
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {           
             if (string.IsNullOrEmpty(textBox5.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text))
             {
                 MessageBox.Show("One or more required fields are missing", "STOP RIGHT THERE CRIMINAL SCUM!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -98,7 +101,7 @@ namespace WindowsFormsApplication1
 
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE suppliertable SET Supplier_Name = @suppname, Supplier_Address = @suppadd, Supplier_ContactNo = @suppCN, Supplier_Email = @suppemail where Supplier_ID = @suppID";
-            cmd.Connection = con;
+            cmd.Connection = db.con;
 
             cmd.Parameters.AddWithValue("@suppname", textBox5.Text);
             cmd.Parameters.AddWithValue("@suppadd", textBox2.Text);

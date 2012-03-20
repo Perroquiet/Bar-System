@@ -9,11 +9,11 @@ namespace WindowsFormsApplication1
 {
     class Database
     {
-        
+        public System.Data.SqlClient.SqlDataAdapter da;
         public System.Data.SqlClient.SqlConnection con;
-        public DataRow[] dRow;
-
-
+        
+        
+                
         /*
         System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
         */
@@ -47,13 +47,13 @@ namespace WindowsFormsApplication1
             da.Fill(dt);
         }
 
-        //Form 2 fail!
-        public void dataSet(DataSet ds, string table)
+        //Form 2
+        public void dataSet(DataSet ds, string table, System.Data.SqlClient.SqlConnection connection)
         {
             System.Data.SqlClient.SqlDataAdapter da;
             string sql = string.Format("SELECT * FROM " + table);
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
-            da.Fill(ds, table);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+             da.Fill(ds, "suppliers");
            
         }
 
@@ -73,7 +73,7 @@ namespace WindowsFormsApplication1
             cmd.ExecuteNonQuery();
         }
 
-        public void insertItemDate(object selectedIndex, System.Data.SqlClient.SqlConnection connection)
+        public void insertItemDate(object selectedIndex, object supplier, System.Data.SqlClient.SqlConnection connection)
         {
             DataRow[] dRow;
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -93,17 +93,52 @@ namespace WindowsFormsApplication1
             }
 
             cmd.Parameters.AddWithValue("@itemid", dRow[dRow.Length - 1].ItemArray.GetValue(0).ToString());
+            cmd.Parameters.AddWithValue("@item", dRow[dRow.Length - 1].ItemArray.GetValue(1).ToString());
             cmd.Parameters.AddWithValue("@supplierid", selectedIndex);
             cmd.Parameters.AddWithValue("@dateadded", DateTime.Now);
             cmd.Parameters.AddWithValue("@lastupdated", DateTime.Now);
+            cmd.Parameters.AddWithValue("@supplier", supplier);
 
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "INSERT INTO itemtimetable VALUES(@itemid,@supplierid,@dateadded,@lastupdated)";
+            cmd.CommandText = "INSERT INTO itemtimetable VALUES(@itemid,@item,@supplierid,@supplier,@dateadded,@lastupdated)";
             cmd.Connection = connection;
 
             cmd.ExecuteNonQuery();
         }
 
+        public void selectItemUpdateForm(DataSet ds, string key, System.Data.SqlClient.SqlConnection connection)
+        {
+            System.Data.SqlClient.SqlDataAdapter da;
+
+            string sql = string.Format("SELECT * FROM itemtable where Item_Name LIKE '%{0}%'", key);
+
+
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+            da.Fill(ds, "items");
+        }
+        public void selectSupplierUpdateForm(DataSet ds, string key, System.Data.SqlClient.SqlConnection connection)
+        {
+            System.Data.SqlClient.SqlDataAdapter da;
+
+            string sql = string.Format("SELECT * FROM suppliertable where Supplier_Name LIKE '%{0}%'", key);
+
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+            da.Fill(ds, "suppliers");
+        }
+        public void selectUserRecords(string username, string password, System.Data.SqlClient.SqlConnection connection)
+        {
+            
+            string sql = string.Format("SELECT * FROM usertable where username = '{0}' AND password = '{1}'", username, password);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+            
+        }
+        public void selectAddSale(DataSet ds, System.Data.SqlClient.SqlConnection connection)
+        {
+            System.Data.SqlClient.SqlDataAdapter da;
+            string sql = string.Format("SELECT * FROM itemtable");
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, connection);
+            da.Fill(ds, "items");
+        }
         public void updateItem(object textBox1, object textBox2, object textBox3, object textBox4, object itemId, System.Data.SqlClient.SqlConnection connection)
         {
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -119,6 +154,7 @@ namespace WindowsFormsApplication1
             cmd.Parameters.AddWithValue("@itemid", itemId);
 
             cmd.ExecuteNonQuery();
+            this.updateitemhistory(itemId, connection);
         }
         
         public void deleteItem(object itemId, System.Data.SqlClient.SqlConnection connection)
@@ -134,14 +170,15 @@ namespace WindowsFormsApplication1
             cmd.ExecuteNonQuery();
         }
 
-        public void decQuantityOfItem(object itemId, System.Data.SqlClient.SqlConnection connection)
+        public void decQuantityOfItem(object itemId, object quantity, System.Data.SqlClient.SqlConnection connection)
         {
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
 
             cmd.Parameters.AddWithValue("@itemid", itemId);
+            cmd.Parameters.AddWithValue("@quant", quantity);
 
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE itemtable SET Item_Quantity = Item_Quantity - 1 WHERE Item_ID = @itemid";
+            cmd.CommandText = "UPDATE itemtable SET Item_Quantity = Item_Quantity - @quant WHERE Item_ID = @itemid";
             cmd.Connection = connection;
 
             cmd.ExecuteNonQuery();
@@ -197,6 +234,41 @@ namespace WindowsFormsApplication1
 
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "DELETE FROM suppliertable WHERE Supplier_ID=@suppId";
+            cmd.Connection = connection;
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void addsale(object itemid, object itemname, object itemdesc, object itemprice, object itemquant, object totalprice, object employee, object date, System.Data.SqlClient.SqlConnection connection)
+        {
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+
+            cmd.Parameters.AddWithValue("@itemname", itemname);
+            cmd.Parameters.AddWithValue("@itemdesc", itemdesc);
+            cmd.Parameters.AddWithValue("@itemprice", itemprice);
+            cmd.Parameters.AddWithValue("@itemquant", itemquant);
+            cmd.Parameters.AddWithValue("@totalprice", totalprice);
+            cmd.Parameters.AddWithValue("@employee", employee);
+            cmd.Parameters.AddWithValue("@date", date);
+            
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "INSERT INTO sales VALUES(@itemname,@itemdesc,@itemprice,@itemquant,@totalprice,@employee,@date)";
+            cmd.Connection = connection;
+
+            cmd.ExecuteNonQuery();
+            this.decQuantityOfItem(itemid, itemquant, connection);
+            this.updateitemhistory(itemid, connection);
+        }
+
+        private void updateitemhistory(object itemid, System.Data.SqlClient.SqlConnection connection)
+        {
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+
+            cmd.Parameters.AddWithValue("@itemid", itemid);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE itemtimetable SET Last_Updated = @date WHERE Item_ID = @itemid";
             cmd.Connection = connection;
 
             cmd.ExecuteNonQuery();
