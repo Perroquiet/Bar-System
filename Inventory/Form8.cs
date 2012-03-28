@@ -92,7 +92,7 @@ namespace WindowsFormsApplication1
             try
             {
                 int temp = Convert.ToInt32(textBox2.Text);
-                if (Convert.ToInt32(textBox2.Text) == 0)
+                if (Convert.ToInt32(textBox2.Text) == 0 || Convert.ToInt32(textBox2.Text) < 0)
                 {
                     MessageBox.Show("Please provide quantity.");
                     return;
@@ -104,7 +104,7 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("Please provide quantity.");
                     return;
-                }
+                }               
                 else
                 {
                     MessageBox.Show("Please provide number only.");

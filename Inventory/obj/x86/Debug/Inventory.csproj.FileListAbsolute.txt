@@ -110,6 +110,23 @@ C:\Documents and Settings\DJ Padayhag\Desktop\Bar Inventory Beta\Inventory\obj\x
 C:\Documents and Settings\DJ Padayhag\Desktop\Bar Inventory Beta\Inventory\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Documents and Settings\DJ Padayhag\Desktop\Bar Inventory Beta\Inventory\obj\x86\Debug\Inventory.exe.manifest
 C:\Documents and Settings\DJ Padayhag\Desktop\Bar Inventory Beta\Inventory\obj\x86\Debug\Inventory.application
-C:\Documents and Settings\DJ Padayhag\Desktop\CSc 183\Bar-System\Inventory\bin\Debug\Inventory.exe.config
-C:\Documents and Settings\DJ Padayhag\Desktop\CSc 183\Bar-System\Inventory\obj\x86\Debug\Inventory.exe
-C:\Documents and Settings\DJ Padayhag\Desktop\CSc 183\Bar-System\Inventory\obj\x86\Debug\Inventory.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\bin\Debug\Inventory.exe.config
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\Inventory.exe
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\Inventory.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form2.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form3.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form4.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form5.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form7.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Form8.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\bin\Debug\Inventory.exe.manifest
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\bin\Debug\Inventory.application
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\bin\Debug\Inventory.exe
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\bin\Debug\Inventory.pdb
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\Inventory.exe.manifest
+C:\Users\USER\Documents\Visual Studio 2010\Projects\Bar Inventory Closed Beta\Inventory\obj\x86\Debug\Inventory.application

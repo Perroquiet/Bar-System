@@ -22,17 +22,8 @@ namespace WindowsFormsApplication1
         private void Form2_Load(object sender, EventArgs e)
         {
             db.connect();
-            DataSet ds = new DataSet();
-            
-            /*
-            System.Data.SqlClient.SqlDataAdapter da;
-            string sql = string.Format("SELECT * FROM suppliertable");
-            
-            
-            da = new System.Data.SqlClient.SqlDataAdapter(sql, db.con);
-            da.Fill(ds, "suppliers");
-            */
-           
+            DataSet ds = new DataSet();         
+                     
             
             db.dataSet(ds, "suppliertable", db.con);
             
@@ -80,16 +71,36 @@ namespace WindowsFormsApplication1
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Refresh();
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            db.connect();
+            DataSet ds2 = new DataSet();
             Form3 supplieraddForm = new Form3();
             if (supplieraddForm.ShowDialog() == DialogResult.OK)
             {
-                
-                //generatesupplierlist();
+                comboBox1.DataSource = null;
+                comboBox1.Items.Clear();
+                db.dataSet(ds2, "suppliertable", db.con);
+
+                dRow = new DataRow[ds2.Tables["suppliers"].Rows.Count];
+
+                for (int i = 0; i < ds2.Tables["suppliers"].Rows.Count; i++)
+                {
+                    dRow[i] = ds2.Tables["suppliers"].Rows[i];
+                }
+
+                System.Object[] SupplierObject = new System.Object[dRow.Length];
+
+                for (int i = 0; i < dRow.Length; i++)
+                {
+                    SupplierObject[i] = dRow[i].ItemArray.GetValue(1).ToString();
+                }
+                comboBox1.Items.AddRange(SupplierObject);
+
+                comboBox1.SelectedIndex = comboBox1.Items.Count - 1;
             }
         }
 

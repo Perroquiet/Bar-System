@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
         System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
         */
         public const string DataFilename = "inventorydb.mdf";
-        public const string Location = "E:\\";
+        public const string Location = "C:\\Users\\USER\\Documents\\C# DB\\";
         
         public const string ConnectionString1 = "Data Source=.\\SQLEXPRESS;AttachDbFilename=";
         public const string ConnectionString2 = ";Integrated Security=True;Connect Timeout=30;User Instance=True";
@@ -43,6 +43,23 @@ namespace WindowsFormsApplication1
         {
             System.Data.SqlClient.SqlDataAdapter da;
             string sql = string.Format("SELECT * FROM itemtable where Item_Name LIKE '%{0}%'", textbox);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da.Fill(dt);
+        }
+
+        //Form 1
+        public void dataGrid3(DataTable dt, object textbox)
+        {
+            System.Data.SqlClient.SqlDataAdapter da;
+            string sql = string.Format("SELECT * FROM suppliertable where Supplier_Name LIKE '%{0}%'", textbox);
+            da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
+            da.Fill(dt);
+        }
+        //Form 1
+        public void dataGrid4(DataTable dt, object textbox)
+        {
+            System.Data.SqlClient.SqlDataAdapter da;
+            string sql = string.Format("SELECT * FROM sales where item LIKE '%{0}%'", textbox);
             da = new System.Data.SqlClient.SqlDataAdapter(sql, con);
             da.Fill(dt);
         }
